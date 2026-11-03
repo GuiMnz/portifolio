@@ -1,0 +1,37 @@
+:root { --grid-dot: rgba(0, 0, 0, 0.2); }
+body { margin: 0; }
+
+/* Hero: empilhada no celular, duas colunas a partir de 1024px */
+.hero { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-12) var(--space-6) 0; }
+@media (min-width: 1024px) { .hero { flex-direction: row; align-items: center; gap: 0; min-height: 720px; padding: 0 80px; } }
+/* Celular e tablet: a Hero ocupa a primeira dobra inteira; Projetos só aparece ao rolar */
+@media (max-width: 1023px) { .hero { min-height: calc(100svh - 128px); justify-content: center; padding-bottom: var(--space-6); } }
+.hero__row { display: flex; flex-direction: column; gap: var(--space-8); width: 100%; }
+@media (min-width: 1024px) { .hero__row { flex-direction: row; align-items: flex-start; gap: 0; } }
+.hero__hello { margin: 0; display: flex; flex-direction: column; align-items: flex-start; font-family: var(--font-plex); font-weight: 700; font-size: 56px; line-height: 1.2; letter-spacing: -1.12px; }
+@media (min-width: 1024px) { .hero__hello { width: 100%; align-items: center; text-align: center; padding: 0 32px; font-size: 80px; line-height: 1.5; letter-spacing: -1.6px; } }
+.hero__avatar { display: block; width: 64px; height: 98px; object-fit: cover; object-position: 0% 50%; }
+@media (min-width: 1024px) { .hero__avatar { width: 87px; height: 133px; } }
+.hero__intro { display: grid; gap: var(--space-8); width: 100%; }
+@media (min-width: 1024px) { .hero__intro { padding-top: var(--space-6); } }
+.hero__hi { display: inline-block; }
+.hero__lead { font-size: 18px; line-height: 1.6; text-align: left; }
+@media (min-width: 1024px) { .hero__lead { font-size: 20px; line-height: 1.5; } }
+
+/* Projetos */
+.projects { margin-top: var(--space-18); }
+@media (min-width: 768px) { .projects { margin-top: var(--space-28); } }
+.projects .ml-container { padding-inline: var(--space-6); }
+@media (min-width: 768px) { .projects .ml-section-title { line-height: 1; letter-spacing: -2.56px; } }
+
+/* Capa em leque: no hover (ou foco) do card, as telas laterais se abrem e a do centro sobe; no celular, o leque acontece quando o card entra na tela */
+.cover-fan { position: relative; }
+.cover-fan img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cover-fan__phone { transition: transform 450ms cubic-bezier(.2, .8, .2, 1); will-change: transform; }
+.cover-fan__phone--left { transform-origin: 27.3% 85.4%; }
+.cover-fan__phone--right { transform-origin: 72.7% 85.4%; }
+.cover-fan__phone--center { transform-origin: 50% 91.7%; }
+.ml-card:hover .cover-fan__phone--left, .ml-card:focus-visible .cover-fan__phone--left, .cover-fan.is-fanned .cover-fan__phone--left { transform: translateX(-3.2%) rotate(-4deg); }
+.ml-card:hover .cover-fan__phone--right, .ml-card:focus-visible .cover-fan__phone--right, .cover-fan.is-fanned .cover-fan__phone--right { transform: translateX(3.2%) rotate(4deg); }
+.ml-card:hover .cover-fan__phone--center, .ml-card:focus-visible .cover-fan__phone--center, .cover-fan.is-fanned .cover-fan__phone--center { transform: translateY(-2.5%) scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .cover-fan__phone { transition: none; transform: none !important; } }
