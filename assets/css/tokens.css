@@ -1,0 +1,178 @@
+/* Monolume — generated from tokens.json */
+:root, [data-theme="light"] {
+  --primary: oklch(86.89 0.29 142.02); /* Verde-limão da marca: botão principal, rodapé e círculo do cursor do Card. Valor exatamente como está em global.css; o L acima de 1 é limitado pelo navegador e renderiza perto de #6cff5c. Texto sobre ele: foreground ou secondary. Nunca use como texto ou ícone sobre background (cerca de 1,3:1). */
+  --primary-intended: #27ff0b; /* Referência: o verde que o comentário de global.css declara (#27FF0B), mas que o site não renderiza. Nenhum componente usa este token. */
+  --background: #f5f5f5; /* Fundo da página, campos flutuantes e estado hover dos botões. Como escrito no código; renderiza #ffffff (o comentário declara #fefefe). */
+  --foreground: oklch(0 0 0); /* Títulos e texto principal sobre background e primary. Também o fundo do botão secundário, com texto background. */
+  --secondary: oklch(0.38 0 1); /* Texto de apoio sobre background e primary, e toda linha tracejada (bordas, divisores, pílulas). Renderiza #424242. */
+  --label: oklch(0.551 0.027 264.364); /* Rótulo em repouso dos campos flutuantes, sobre background (gray-500 do Tailwind). */
+  --grid-dot: rgba(0, 0, 0, 0.1); /* Pontos da grade de fundo fixa, 1px a cada 25px, sobre background. Decorativo, nunca para texto. */
+  --prose-strong: oklch(0.205 0 0); /* Links, negrito, citações e código inline dentro de article, sobre background (neutral-900 do typography). */
+  --prose-rule: oklch(0.922 0 0); /* Linha horizontal e borda de citação dentro de article (neutral-200). Decorativa. */
+  --code-bg: #24292e; /* Fundo dos blocos de código em article (tema github-dark do Shiki). */
+  --code-fg: #e1e4e8; /* Texto dos blocos de código, sobre code-bg. */
+}
+:root {
+  --space-0-5: 2px; /* Folga entre link de navegação e sublinhado tracejado (pb-0.5). */
+  --space-1: 4px; /* Entre itens das listas do rodapé. */
+  --space-2: 8px; /* Rótulo sob título de coluna do rodapé; entre links sociais; recuo do rótulo flutuante. */
+  --space-2-5: 10px; /* Entre os dois botões da Hero (gap-2.5). */
+  --space-3: 12px; /* Entre links da navegação; padding vertical do botão no mobile. */
+  --space-4: 16px; /* Padding do campo, padding vertical do botão e entre título e texto do Card. */
+  --space-6: 24px; /* Padding de Header e seções; padding horizontal do botão no mobile; entre campos. */
+  --space-8: 32px; /* Gap do Card e padding inferior antes do divisor tracejado; padding horizontal de pílula. */
+  --space-10: 40px; /* Padding do rodapé e de Contact; padding horizontal do botão. */
+  --space-12: 48px; /* Entre marquee e lista; gap do Card em md; entre título e conteúdo de Contact. */
+  --space-16: 64px; /* Gap das colunas da Hero em md. */
+  --space-18: 72px; /* Compensa o Header fixo no topo das páginas (pt-18). */
+  --space-28: 112px; /* Entre seções: margem de About e Contact. */
+  --radius-code: 6px; /* Blocos de código em article. */
+  --radius-2xl: 16px; /* Botões e imagem das páginas de detalhe. */
+  --radius-3xl: 24px; /* Imagens de Card e About; campos de formulário. */
+  --radius-4xl: 32px; /* Pílula de habilidade. */
+  --radius-footer: 80px; /* Só os cantos superiores do rodapé: é a maior curva do sistema. */
+  --radius-full: 9999px; /* Círculo de 75px que segue o cursor no Card. */
+  --border-1: 1px; /* Toda linha tracejada de contorno: campo, pílula, divisor, círculo e hover de botão. */
+  --border-2: 2px; /* Sublinhado tracejado de link de navegação em hover. */
+  --grid-pitch: 25px; /* Distância entre os pontos da grade de fundo. */
+  --cursor-circle: 75px; /* Diâmetro do círculo do Card. */
+  --card-media: 610px; /* Largura máxima da imagem do Card, proporção 610/400. */
+  --portrait-media: 668px; /* Largura máxima do retrato de About, proporção 668/516. */
+  --footer-tagline: 760px; /* Largura máxima da frase do rodapé. */
+  --bp-sm: 640px; /* Botões em largura automática; campos Name e Email lado a lado. */
+  --bp-md: 768px; /* Navegação completa; Card e About em duas colunas. */
+  --bp-lg: 1024px; /* Hero em duas colunas; títulos de Contact e rodapé em 128px. */
+  --bp-xl: 1280px; /* Largura máxima do container neste passo. */
+  --bp-2xl: 1536px; /* Largura máxima do container no último passo. */
+  --opacity-credit: 0.7; /* Crédito no fim do rodapé. */
+  --font-plex: "IBM Plex Mono", monospace;
+  --font-geist: "Geist", sans-serif;
+  --text-display-hero: 700 80px/1.5 var(--font-plex); /* Só o h1 da Hero, em caixa alta. No código: clamp(6rem, 20vw, 12.5rem); 200px é o teto. */
+  --text-display-section: 700 80px/1.5px var(--font-plex); /* Título de seção e marquee, em caixa alta. Abaixo do breakpoint md ou lg, cai para 48px/48px. */
+  --text-heading-xl: 700 48px/48px var(--font-plex); /* Título de página de detalhe, em caixa alta. No mobile: 30px/36px. */
+  --text-heading-lg: 700 36px/40px var(--font-plex); /* Título do Card, monograma M., ano do blog e Error 404. No mobile, Card e ano usam 24px/32px. */
+  --text-heading-md: 700 24px/32px var(--font-plex); /* Subtítulo de seção, em caixa alta, com secondary. */
+  --text-prose-h1: 700 40.5px/45px var(--font-plex); /* h1 dentro de article; margem inferior 36px. */
+  --text-prose-h2: 700 27px/36px var(--font-plex); /* h2 dentro de article; margens 54px e 27px. */
+  --text-prose-h3: 700 22.5px/36px var(--font-plex); /* h3 dentro de article; margem inferior 13,5px. */
+  --text-wordmark: 400 128px/128px var(--font-geist); /* Nome no rodapé: Geist regular, sem a classe heading. No mobile: 48px/48px. */
+  --text-lead-xl: 400 30px/36px var(--font-geist); /* Chamada de Contact e frase do rodapé. No mobile: 20px/28px e 24px/32px. */
+  --text-lead: 400 24px/32px var(--font-geist); /* Texto de apoio de Hero, About e Card, com secondary. No mobile de About e Card: 18px/28px. */
+  --text-body-lg: 400 20px/28px var(--font-geist); /* Campos de formulário, links sociais e títulos das colunas do rodapé. */
+  --text-article: 400 18px/32px var(--font-geist); /* Corpo de article, com secondary. */
+  --text-body: 400 16px/24px var(--font-geist); /* Padrão: botões, navegação e listas do rodapé. */
+  --text-caption: 400 14px/20px var(--font-geist); /* Crédito do rodapé, a 70% de opacidade, e rótulo flutuante em foco. */
+  --text-code: 400 15.75px/27px var(--font-plex); /* Blocos de código em article. No código a família é a ui-monospace padrão do typography, não Plex. */
+}
+.display-hero {
+  font-family: var(--font-plex);
+  font-size: 80px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: -2%;
+}
+.display-section {
+  font-family: var(--font-plex);
+  font-size: 80px;
+  line-height: 1.5px;
+  font-weight: 700;
+  letter-spacing: -2%;
+}
+.heading-xl {
+  font-family: var(--font-plex);
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: 700;
+  letter-spacing: -2%;
+}
+.heading-lg {
+  font-family: var(--font-plex);
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: -2%;
+}
+.heading-md {
+  font-family: var(--font-plex);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -2%;
+}
+.prose-h1 {
+  font-family: var(--font-plex);
+  font-size: 40.5px;
+  line-height: 45px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.prose-h2 {
+  font-family: var(--font-plex);
+  font-size: 27px;
+  line-height: 36px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.prose-h3 {
+  font-family: var(--font-plex);
+  font-size: 22.5px;
+  line-height: 36px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.wordmark {
+  font-family: var(--font-geist);
+  font-size: 128px;
+  line-height: 128px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.lead-xl {
+  font-family: var(--font-geist);
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.lead {
+  font-family: var(--font-geist);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.body-lg {
+  font-family: var(--font-geist);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.article {
+  font-family: var(--font-geist);
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.body {
+  font-family: var(--font-geist);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.caption {
+  font-family: var(--font-geist);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.code {
+  font-family: var(--font-plex);
+  font-size: 15.75px;
+  line-height: 27px;
+  font-weight: 400;
+  letter-spacing: 0;
+}

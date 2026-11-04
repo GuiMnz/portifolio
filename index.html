@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guilherme Menezes | Product Designer Portfólio</title>
 <meta name="description" content="Portfólio de Guilherme Menezes, Product Designer no mercado financeiro: cases de checkout de renda variável e de rebalanceamento de carteira.">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/monolume.css">
 <link rel="stylesheet" href="assets/css/home.css">
+<script src="assets/js/site.js" defer></script>
 </head>
 <body>
 <div id="topo" class="ml-grid-bg" style="color: var(--foreground); font-family: var(--font-geist);">
@@ -46,12 +49,12 @@
 <section class="projects" aria-label="Projetos">
   <span id="projetos" class="ml-anchor" aria-hidden="true"></span>
   <div class="ml-container">
-    <div class="ml-marquee" aria-hidden="true">
+    <div class="ml-marquee">
       <div class="ml-marquee__track">
         <div class="ml-marquee__set">
           <h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2>
         </div>
-        <div class="ml-marquee__set">
+        <div class="ml-marquee__set" aria-hidden="true">
           <h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2><h2 class="ml-heading ml-section-title">Projetos</h2>
         </div>
       </div>
@@ -59,7 +62,7 @@
 
     <ul>
       <li>
-        <a class="ml-card" href="case-checkout.html" aria-label="Ver case: Checkout de Renda Variável" style="align-items: flex-start">
+        <a class="ml-card ml-card--top" href="case-checkout.html" aria-label="Ver case: Checkout de Renda Variável">
           <div class="ml-card__media cover-fan" role="img" aria-label="Três telas do novo checkout de renda variável: ordem a mercado, day trade com stop gain/loss e ordem limitada">
             <img class="cover-fan__bg" src="assets/img/capa-fundo.webp" alt="" width="915" height="600">
             <img class="cover-fan__phone cover-fan__phone--left" src="assets/img/capa-checkout-esquerda.webp" alt="" width="1830" height="1200">
@@ -75,7 +78,7 @@
         </a>
       </li>
       <li>
-        <a class="ml-card ml-card--reverse" href="case-nivo.html" aria-label="Ver case: Rebalanceamento de carteira de investimentos" style="align-items: flex-start">
+        <a class="ml-card ml-card--top ml-card--reverse" href="case-nivo.html" aria-label="Ver case: Rebalanceamento de carteira de investimentos">
           <div class="ml-card__media cover-fan" role="img" aria-label="Três telas do nivo em desktop: Aporte, Painel com o total da carteira de exemplo e Carteira com metas e notas">
             <img class="cover-fan__bg" src="assets/img/capa-fundo.webp" alt="" width="915" height="600">
             <img class="cover-fan__phone cover-fan__phone--left" src="assets/img/capa-nivo-esquerda.webp" alt="" width="1830" height="1200">
@@ -83,9 +86,23 @@
             <img class="cover-fan__phone cover-fan__phone--center" src="assets/img/capa-nivo-centro.webp" alt="" width="1830" height="1200">
           </div>
           <div class="ml-card__text">
-            <p class="ml-card__meta">Projeto pessoal</p>
+            <p class="ml-card__meta">Nivo</p>
             <h3 class="ml-heading ml-card__title"><span class="ml-card__title-text">Rebalanceamento de carteira de investimentos</span></h3>
-            <p class="ml-card__desc">Um app que diz quanto e em quê investir a cada aporte mensal, para aproximar a carteira das metas, construído com Claude Code.</p>
+            <p class="ml-card__desc">Um app que diz quanto e em quê investir a cada aporte mensal de acordo com suas metas. Construído em parceria com o Claude Code.</p>
+            <span class="ml-link">Ver case →</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="ml-card ml-card--top ml-card--last" href="#" aria-label="Ver case 03" style="display: none">
+          <div class="ml-card__media ph-media">
+            <span class="ml-heading num" aria-hidden="true">03</span>
+            <span class="soon">Capa do case em breve</span>
+          </div>
+          <div class="ml-card__text">
+            <p class="ml-card__meta ph">[empresa]</p>
+            <h3 class="ml-heading ml-card__title ph"><span class="ml-card__title-text">[título do case]</span></h3>
+            <p class="ml-card__desc ph">[uma ou duas linhas sobre o problema]</p>
             <span class="ml-link">Ver case →</span>
           </div>
         </a>
@@ -107,8 +124,8 @@
           <span class="ml-contact-row__label">E-mail</span>
           <a class="ml-contact-row__value" href="mailto:gui.mnz90@gmail.com">gui.mnz90@gmail.com</a>
           <span class="ml-contact-row__actions">
-            <span class="ml-contact-row__copied" id="copied" role="status"></span>
-            <button class="ml-icon-btn" id="copyEmail" type="button" aria-label="Copiar e-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
+            <span class="ml-contact-row__copied" id="copied" role="status" hidden>Copiado!</span>
+            <button class="ml-icon-btn" type="button" id="copyEmail" aria-label="Copiar e-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
           </span>
         </li>
         <li class="ml-contact-row">
@@ -120,7 +137,7 @@
     </div>
   </div>
   <div class="ml-footer__bottom">
-    <span class="ml-footer__credit">© Guilherme Menezes • 2026</span>
+    <span class="ml-footer__credit" style="color: var(--label, #6a7282)">© Guilherme Menezes • 2026<span id="footerBand"></span></span>
     <a class="ml-footer__top" href="#topo">Voltar ao topo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg></a>
   </div>
 </footer>
@@ -128,7 +145,5 @@
 </main>
 
 </div>
-<script src="assets/js/site.js"></script>
-<script src="assets/js/home.js"></script>
 </body>
 </html>

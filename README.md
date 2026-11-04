@@ -13,7 +13,7 @@ Todos os caminhos são relativos, então funciona na raiz do domínio e em subpa
 
 ## Imagens
 
-Todas as imagens estão em `assets/img/`. Se alguma faltar, a página mostra uma caixa tracejada com o nome do arquivo, e o console do navegador (F12) lista `Imagem pendente: assets/img/<nome>`.
+Todas as imagens estão em `assets/img/`, inclusive o favicon (`favicon.png`).
 
 ## Ver no seu computador
 
@@ -43,10 +43,10 @@ Se o repositório já tiver outros arquivos, confira antes se não há um `index
 ```
 index.html  sobre.html  case-checkout.html  case-nivo.html
 assets/
-  css/  monolume.css (sistema de design)  + um arquivo por página
-  js/   site.js (menu, e-mail)  home.js  case.js (abas, antes e depois, visualizador de imagens)
+  css/  tokens.css + monolume.css (sistema de design)  + um arquivo por página (home, sobre, case-checkout, case-nivo)
+  js/   site.js (topo, menu, e-mail, banda do rodapé, foco dos cards no celular)  case.js (abas, antes e depois, visualizador de imagens)
   img/  imagens
 .nojekyll
 ```
 
-O visual vem do sistema de design Monolume (`assets/css/monolume.css`). As fontes (Geist e IBM Plex Mono) são carregadas do Google Fonts.
+O visual vem do sistema de design Monolume (`assets/css/tokens.css` e `assets/css/monolume.css`). As fontes (Geist e IBM Plex Mono) são carregadas do Google Fonts.

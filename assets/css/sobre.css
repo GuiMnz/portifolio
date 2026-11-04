@@ -1,4 +1,4 @@
-:root { --grid-dot: rgba(0, 0, 0, 0.2); }
+:root { --primary: #6cff5c; --primary-hover: #3fd630; --grid-dot: rgba(0, 0, 0, 0.2); --text-display-section: 700 80px/1.5 var(--font-plex); }
 body { margin: 0; }
 
 /* Abertura */
@@ -26,6 +26,15 @@ body { margin: 0; }
 .about-section { margin-top: var(--space-28); padding-inline: var(--space-6); }
 .h-md { margin: 0; font-size: 24px; line-height: 32px; text-transform: uppercase; color: var(--secondary); }
 
+/* O que eu faço: linhas tracejadas */
+.rows { margin: var(--space-12) 0 0; padding: 0; list-style: none; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-12); padding-block: var(--space-8); border-bottom: var(--border-1) dashed var(--secondary); }
+.row:first-child { border-top: var(--border-1) dashed var(--secondary); }
+.row h3 { margin: 0; font-size: 27px; line-height: 1.33; letter-spacing: 0; }
+.row p { margin: 0; font-size: 18px; line-height: 28px; color: var(--secondary); }
+@media (min-width: 768px) { .row p { font-size: 20px; line-height: 30px; } }
+@media (max-width: 767px) { .row { grid-template-columns: 1fr; } }
+
 /* Experiência: linha do tempo, do cargo atual para o mais antigo */
 .timeline { margin: var(--space-8) 0 0; padding: 0; list-style: none; }
 /* --tl-center: altura do centro do bloco cargo + empresa; ponto, logo e período se alinham nela */
@@ -37,7 +46,7 @@ body { margin: 0; }
 .tl-item:last-child .tl-item__rail::before { bottom: auto; height: var(--tl-center); }
 .tl-item__rail::after { content: ""; position: absolute; top: var(--tl-center); left: 50%; width: 13px; height: 13px; transform: translate(-50%, -50%); border: var(--border-1) solid var(--foreground); border-radius: var(--radius-full); background: var(--background); }
 .tl-item--current .tl-item__rail::after { background: var(--foreground); }
-/* Experiências passadas: tons mais suaves (secondary e label) */
+/* Experiências passadas: tons mais suaves do Design System (secondary e label) */
 .tl-item:not(.tl-item--current) .tl-item__rail::after { border-color: var(--secondary); }
 .tl-item:not(.tl-item--current) .tl-item__role { color: var(--secondary); }
 .tl-item:not(.tl-item--current) .tl-item__company { color: var(--label); }
@@ -51,7 +60,7 @@ body { margin: 0; }
 .tl-item__company { margin: 0; font-size: 16px; line-height: 22px; color: var(--secondary); }
 /* Desktop: linha do tempo horizontal e centralizada, do mais antigo (esquerda) ao atual (direita).
    Grade de 12 meias-faixas: cada ponto fica no centro de um par de faixas; o texto, centralizado
-   no ponto, ocupa 4 meias-faixas e alterna acima/abaixo da linha.
+   no ponto, ocupa 4 meias-faixas e alterna acima/abaixo da linha, sem encostar no vizinho do mesmo lado.
    Linhas da grade: 1 texto acima, 2 período acima, 3 linha, 4 período abaixo, 5 texto abaixo. */
 @media (min-width: 1024px) {
   .timeline { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto auto 24px auto auto; margin-top: var(--space-12); }
@@ -64,11 +73,14 @@ body { margin: 0; }
   .tl-item__period, .tl-item__body { padding: 0 var(--space-3); text-align: center; }
   .tl-item__body { flex-direction: column; align-items: center; gap: var(--space-3); }
   .tl-item__text { align-items: center; }
+  /* Acima da linha (o atual, Santander, fica em cima): texto em cima, período colado na linha */
   .tl-item__period { line-height: 22px; }
   .tl-item:nth-child(odd) .tl-item__body { grid-row: 1; align-self: end; padding-bottom: 0; }
   .tl-item:nth-child(odd) .tl-item__period { grid-row: 2; padding-bottom: var(--space-3); }
+  /* Abaixo da linha: período colado na linha, texto embaixo */
   .tl-item:nth-child(even) .tl-item__period { grid-row: 4; padding-top: var(--space-3); }
   .tl-item:nth-child(even) .tl-item__body { grid-row: 5; padding-top: 0; padding-bottom: 0; }
+  /* Posição: o mais recente (1º no código) fica à direita */
   .tl-item:nth-child(1) > * { grid-column: 9 / span 4; }
   .tl-item:nth-child(2) > * { grid-column: 7 / span 4; }
   .tl-item:nth-child(3) > * { grid-column: 5 / span 4; }
@@ -87,7 +99,7 @@ body { margin: 0; }
   .tl-item__body { grid-column: 2; grid-row: 2; }
 }
 
-/* Formação e certificações: duas listas lado a lado */
+/* Formação e certificações: duas listas lado a lado, linhas tracejadas como em Experiência */
 .creds { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-12); }
 @media (min-width: 900px) { .creds { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-12) var(--space-16); } }
 .creds__group-title { margin-bottom: var(--space-8); }
@@ -104,4 +116,4 @@ body { margin: 0; }
   .cred__logo { width: 48px; height: 40px; }
   .cred__period { grid-column: 2; text-align: left; }
 }
-@media (max-width: 767px) { .about-intro { padding-top: var(--space-12); } .about-section { margin-top: var(--space-18); } }
+@media (max-width: 767px) { .about-intro { padding-top: var(--space-12); } .about-section { margin-top: var(--space-18); } .row h3 { font-size: 22.5px; line-height: 1.6; } }

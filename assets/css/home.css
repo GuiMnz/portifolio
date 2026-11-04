@@ -1,10 +1,12 @@
-:root { --grid-dot: rgba(0, 0, 0, 0.2); }
+/* Os tokens vêm de ds/monolume/tokens.css. Fixados aqui, porque o tokens.css gerado está atrás do tokens.json do sistema: o verde (o oklch do tema usa L acima de 1), o hover do botão primário, os pontos do fundo (20%) e a altura de linha do display-section (1,5, sem unidade). */
+:root { --primary: #6cff5c; --primary-hover: #3fd630; --grid-dot: rgba(0, 0, 0, 0.2); --text-display-section: 700 80px/1.5 var(--font-plex); }
 body { margin: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* Hero: empilhada no celular, duas colunas a partir de 1024px */
 .hero { display: flex; flex-direction: column; gap: var(--space-8); padding: var(--space-12) var(--space-6) 0; }
 @media (min-width: 1024px) { .hero { flex-direction: row; align-items: center; gap: 0; min-height: 720px; padding: 0 80px; } }
-/* Celular e tablet: a Hero ocupa a primeira dobra inteira; Projetos só aparece ao rolar */
+/* Celular e tablet: a Hero ocupa a primeira dobra inteira (altura da tela menos o topo e o espaço antes de Projetos, com folga), com o conteúdo centralizado; Projetos só aparece ao rolar */
 @media (max-width: 1023px) { .hero { min-height: calc(100svh - 128px); justify-content: center; padding-bottom: var(--space-6); } }
 .hero__row { display: flex; flex-direction: column; gap: var(--space-8); width: 100%; }
 @media (min-width: 1024px) { .hero__row { flex-direction: row; align-items: flex-start; gap: 0; } }
@@ -23,15 +25,8 @@ body { margin: 0; }
 @media (min-width: 768px) { .projects { margin-top: var(--space-28); } }
 .projects .ml-container { padding-inline: var(--space-6); }
 @media (min-width: 768px) { .projects .ml-section-title { line-height: 1; letter-spacing: -2.56px; } }
-
-/* Capa em leque: no hover (ou foco) do card, as telas laterais se abrem e a do centro sobe; no celular, o leque acontece quando o card entra na tela */
-.cover-fan { position: relative; }
-.cover-fan img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.cover-fan__phone { transition: transform 450ms cubic-bezier(.2, .8, .2, 1); will-change: transform; }
-.cover-fan__phone--left { transform-origin: 27.3% 85.4%; }
-.cover-fan__phone--right { transform-origin: 72.7% 85.4%; }
-.cover-fan__phone--center { transform-origin: 50% 91.7%; }
-.ml-card:hover .cover-fan__phone--left, .ml-card:focus-visible .cover-fan__phone--left, .cover-fan.is-fanned .cover-fan__phone--left { transform: translateX(-3.2%) rotate(-4deg); }
-.ml-card:hover .cover-fan__phone--right, .ml-card:focus-visible .cover-fan__phone--right, .cover-fan.is-fanned .cover-fan__phone--right { transform: translateX(3.2%) rotate(4deg); }
-.ml-card:hover .cover-fan__phone--center, .ml-card:focus-visible .cover-fan__phone--center, .cover-fan.is-fanned .cover-fan__phone--center { transform: translateY(-2.5%) scale(1.03); }
-@media (prefers-reduced-motion: reduce) { .cover-fan__phone { transition: none; transform: none !important; } }
+.ph { color: var(--label); }
+.ml-card__media.ph-media { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: var(--border-1) dashed var(--secondary); background: var(--background); color: var(--secondary); text-align: center; }
+.ph-media .num { font-size: clamp(3rem, 6vw, 5rem); line-height: 1; color: var(--foreground); }
+.ph-media .soon { font-size: 14px; line-height: 20px; }
+.ml-card--last { border-bottom: 0; }
