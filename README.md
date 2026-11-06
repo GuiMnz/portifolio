@@ -44,9 +44,13 @@ Se o repositório já tiver outros arquivos, confira antes se não há um `index
 index.html  sobre.html  case-checkout.html  case-nivo.html
 assets/
   css/  tokens.css + monolume.css (sistema de design)  + um arquivo por página (home, sobre, case-checkout, case-nivo)
-  js/   site.js (topo, menu, e-mail, banda do rodapé, foco dos cards no celular)  case.js (abas, antes e depois, visualizador de imagens)
+  js/   site.js (topo, menu, e-mail, banda do rodapé, foco dos cards no toque: um card por vez)  case.js (abas, antes e depois, visualizador de imagens)
   img/  imagens
 .nojekyll
 ```
+
+## Atualizar o site
+
+Os links para CSS e JS levam um número de versão (`assets/css/monolume.css?v=20261106`). A cada atualização, troque esse número em todas as páginas pela data do dia: assim o navegador de quem já visitou o site busca os arquivos novos na hora, em vez de mostrar a versão guardada.
 
 O visual vem do sistema de design Monolume (`assets/css/tokens.css` e `assets/css/monolume.css`). As fontes (Geist e IBM Plex Mono) são carregadas do Google Fonts.
