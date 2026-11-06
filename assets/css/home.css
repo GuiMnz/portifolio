@@ -19,6 +19,13 @@ body { margin: 0; }
 .hero__hi { display: inline-block; }
 .hero__lead { font-size: 18px; line-height: 1.6; text-align: left; }
 @media (min-width: 1024px) { .hero__lead { font-size: 20px; line-height: 1.5; } }
+/* Tablet em pé (768–1023px): mesma pilha do celular, com a escala do desktop (Olá! em 80px, ilustração maior e texto em 20px numa medida de leitura) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero__hello { font-size: 80px; line-height: 1.2; letter-spacing: -1.6px; }
+  .hero__avatar { width: 87px; height: 133px; }
+  .hero__intro { max-width: 640px; }
+  .hero__lead { font-size: 20px; line-height: 1.5; }
+}
 
 /* Projetos */
 .projects { margin-top: var(--space-18); }

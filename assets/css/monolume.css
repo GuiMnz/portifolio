@@ -347,7 +347,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Card: no hover (ou foco), uma linha verde surge da esquerda e sublinha o título até o fim; em títulos de duas linhas, sublinha cada linha */
 .ml-card__title-text { background-image: linear-gradient(var(--primary), var(--primary)); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 4px; padding-bottom: 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size 400ms cubic-bezier(.2, .8, .2, 1); }
-.ml-card:hover .ml-card__title-text, .ml-card:focus-visible .ml-card__title-text { background-size: 100% 4px; }
+.ml-card:focus-visible .ml-card__title-text { background-size: 100% 4px; }
+/* Hover só com mouse: no toque, segurar o dedo num link deixa o :hover grudado; lá quem anima é o .is-active */
+@media (hover: hover) and (pointer: fine) { .ml-card:hover .ml-card__title-text { background-size: 100% 4px; } }
 /* Sem hover (celular): a página marca com .is-active o card que está no foco principal da tela.
    Repete o hover com um atraso de 300ms para a animação ser vista; sublinhado e botão "Ver case" começam juntos (e junto com a capa, quando houver). Ao sair, volta sem atraso. */
 .ml-card.is-active .ml-card__title-text { background-size: 100% 4px; transition-delay: 300ms; }
@@ -355,8 +357,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Card: "Ver case" é um TextLink em repouso e vira o botão secundário (ink) no hover ou foco do card; a borda esquerda do botão fica alinhada com o título e o texto ganha o respiro interno */
 .ml-card .ml-link { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-1) 0; border-radius: var(--radius-2xl); text-decoration-color: currentColor; text-underline-offset: 4px; transition: background-color 200ms ease, color 200ms ease, text-decoration-color 200ms ease, padding 200ms ease; }
-.ml-card:hover .ml-link, .ml-card:focus-visible .ml-link { padding-inline: var(--space-4); background: var(--foreground); color: var(--background); text-decoration-color: transparent; }
+.ml-card:focus-visible .ml-link { padding-inline: var(--space-4); background: var(--foreground); color: var(--background); text-decoration-color: transparent; }
 .ml-card.is-active .ml-link { padding-inline: var(--space-4); background: var(--foreground); color: var(--background); text-decoration-color: transparent; transition-delay: 300ms; }
+@media (hover: hover) and (pointer: fine) { .ml-card:hover .ml-link { padding-inline: var(--space-4); background: var(--foreground); color: var(--background); text-decoration-color: transparent; } }
 @media (prefers-reduced-motion: reduce) { .ml-card .ml-link, .ml-card.is-active .ml-link { transition: none; } }
 
 /* ------------------------------------------------------------------
@@ -390,13 +393,31 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .cover-fan__phone--left { transform-origin: 27.3% 85.4%; }
 .cover-fan__phone--right { transform-origin: 72.7% 85.4%; }
 .cover-fan__phone--center { transform-origin: 50% 91.7%; }
-.ml-card:hover .cover-fan__phone--left, .ml-card:focus-visible .cover-fan__phone--left, .ml-card.is-active .cover-fan__phone--left { transform: translateX(-3.2%) rotate(-4deg); }
-.ml-card:hover .cover-fan__phone--right, .ml-card:focus-visible .cover-fan__phone--right, .ml-card.is-active .cover-fan__phone--right { transform: translateX(3.2%) rotate(4deg); }
-.ml-card:hover .cover-fan__phone--center, .ml-card:focus-visible .cover-fan__phone--center, .ml-card.is-active .cover-fan__phone--center { transform: translateY(-2.5%) scale(1.03); }
+.ml-card:focus-visible .cover-fan__phone--left, .ml-card.is-active .cover-fan__phone--left { transform: translateX(-3.2%) rotate(-4deg); }
+.ml-card:focus-visible .cover-fan__phone--right, .ml-card.is-active .cover-fan__phone--right { transform: translateX(3.2%) rotate(4deg); }
+.ml-card:focus-visible .cover-fan__phone--center, .ml-card.is-active .cover-fan__phone--center { transform: translateY(-2.5%) scale(1.03); }
+@media (hover: hover) and (pointer: fine) {
+  .ml-card:hover .cover-fan__phone--left { transform: translateX(-3.2%) rotate(-4deg); }
+  .ml-card:hover .cover-fan__phone--right { transform: translateX(3.2%) rotate(4deg); }
+  .ml-card:hover .cover-fan__phone--center { transform: translateY(-2.5%) scale(1.03); }
+}
+/* Toque: segurar a capa não abre o menu de imagem/link do sistema nem arrasta a imagem, o que interrompia a rolagem e prendia o estado */
+@media (hover: none), (pointer: coarse) {
+  .ml-card { -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+  .ml-card img { -webkit-user-drag: none; -webkit-user-select: none; user-select: none; }
+}
 .ml-card.is-active .cover-fan__phone { transition-delay: 300ms; }
 @media (prefers-reduced-motion: reduce) { .cover-fan__phone { transition: none; transform: none !important; } }
 /* Tablet (768 a 1023px): a capa cede espaço para o texto do card não estourar a tela */
-@media (min-width: 768px) and (max-width: 1023px) { .ml-card__media { max-width: 55%; } }
+/* Tablet em pé (768–1023px): o Card empilha como no celular, com a capa na largura toda e o texto embaixo, em vez de espremer o título em ~300px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ml-card, .ml-card--reverse { flex-direction: column; gap: var(--space-8); }
+  .ml-card__media { max-width: none; }
+  .ml-card__text { flex: none; width: 100%; max-width: 640px; }
+  .ml-card__title, .ml-card__desc { max-width: none; }
+}
+/* Tablet deitado e notebook pequeno (1024–1279px): a capa cede espaço para o texto */
+@media (min-width: 1024px) and (max-width: 1279px) { .ml-card__media { max-width: 52%; } }
 
 /* ------------------------------------------------------------------
    Página de case: tudo o que é compartilhado entre os cases (topo, ficha, processo, etapas, métricas).
@@ -705,8 +726,9 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .mt__panel { gap: var(--space-6); padding: var(--space-6) var(--space-8); }
   .mt__intro > p { font-size: 20px; }
   .mt__panel > .case-img a { width: fit-content; max-width: 100%; margin-inline: auto; }
-  .mt__panel > .case-img img { width: auto; max-width: 100%; height: clamp(260px, calc(100vh - 370px), 720px); object-fit: contain; }
-  @supports (height: 100svh) { .mt__panel > .case-img img { height: clamp(260px, calc(100svh - 370px), 720px); } }
+  /* Teto de altura, não altura fixa: uma imagem larga (fluxo de telas) fica na altura natural e não ganha faixas vazias em cima e embaixo; uma imagem alta para no teto e cabe na dobra */
+  .mt__panel > .case-img img { width: auto; max-width: 100%; height: auto; max-height: clamp(260px, calc(100vh - 370px), 720px); object-fit: contain; }
+  @supports (height: 100svh) { .mt__panel > .case-img img { max-height: clamp(260px, calc(100svh - 370px), 720px); } }
   .mt__panel > .case-img figcaption { text-align: center; }
 }
 
@@ -825,10 +847,49 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .case-next .ml-card__title { font-size: 24px; line-height: 32px; }
 .case-next .ml-card__desc { font-size: 16px; line-height: 24px; }
 .case-next .ml-card .ml-link { font-size: 16px; line-height: 24px; }
-@media (min-width: 768px) { .case-next .ml-card { flex-direction: row; align-items: center; justify-content: flex-start; gap: var(--space-8); } .case-next .ml-card__media { max-width: 240px; } .case-next .ml-card__text { max-width: 520px; } }
+/* Bloco encostado à direita: o divisor ocupa a largura toda; rótulo e card ficam numa coluna à direita, com a largura do card.
+   Dentro dela, da esquerda para a direita: capa e depois texto, tudo alinhado à esquerda; o rótulo fica junto ao texto (no celular, acima da capa). */
+.case-next { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+.case-next::before { grid-column: 1 / -1; }
+.case-next__label, .case-next .ml-card { grid-column: 2; min-width: 0; }
+.case-next__label { text-align: left; }
+.case-next .ml-card { align-items: flex-start; }
+.case-next .ml-card__text { align-items: flex-start; text-align: left; }
+.case-next .ml-card__desc { margin-inline: 0; }
+.case-next .ml-card .ml-link { align-self: flex-start; }
+@media (min-width: 768px) { .case-next .ml-card { flex-direction: row; align-items: flex-start; justify-content: flex-start; gap: var(--space-8); } .case-next .ml-card__media { width: 240px; max-width: 240px; } .case-next .ml-card__text { flex: 1 1 0; width: auto; max-width: 520px; } }
+/* Rótulo junto ao texto: a partir de bp-md ele começa na coluna do texto (capa de 240px + vão de 32px), logo acima da meta; capa e meta começam na mesma altura */
+@media (min-width: 768px) { .case-next__label { margin-bottom: var(--space-3); padding-left: calc(240px + var(--space-8)); } }
+@media (max-width: 767px) { .case-next { grid-template-columns: minmax(0, 1fr); } .case-next__label, .case-next .ml-card { grid-column: 1; } }
 @media (max-width: 767px) { .case-next { margin-top: var(--space-18); } }
 
 /* SegmentedTabs com 4 opções: .ml-tabs--4 no trilho e .ml-tabs--i3 para o marcador na quarta opção */
 .ml-tabs--4 { --ml-tabs-n: 4; max-width: 600px; }
 .ml-tabs--i3 { --ml-tabs-i: 3; }
 @media (max-width: 767px) { .ml-tabs--4 { max-width: none; } .ml-tabs--4 .ml-tabs__tab { padding-inline: var(--space-1); } }
+
+/* ------------------------------------------------------------------
+   Tablet (768–1023px) nas páginas de case: as etapas empilham (título em cima, conteúdo embaixo, na largura toda),
+   como no celular, mas com a tipografia do desktop. Larguras fixas postas no painel (título e texto de apoio) não passam da tela.
+   ------------------------------------------------------------------ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .step, .process > .step { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-8); }
+  .step__body--cont { grid-column: 1; }
+  .step__title, .step__lede, .case-lead { width: auto !important; }
+  .step__head--quotes { margin-bottom: 0; }
+  .step__body--evidence { margin-bottom: 0; }
+  .decide__aside { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-8); }
+  .decide__aside > .step__head { flex: 1 1 0; min-width: 0; }
+  .decide__aside > .legacy { flex: none; }
+  .exception { grid-template-columns: minmax(0, 1fr); }
+  .case-lead { max-width: 600px; }
+}
+
+/* Marquee sem salto: a trilha tem a largura do conteúdo (os dois conjuntos), então -50% é exatamente um conjunto e o fim do laço encaixa no começo.
+   Antes ela tinha a largura da tela e voltava ao início no meio do primeiro conjunto. Como agora percorre um conjunto inteiro (~4.730px com o título em 80px,
+   ~2.830px em 48px), a duração foi recalculada para manter a velocidade de antes: ~41px/s a partir de bp-md e ~20px/s no celular. */
+.ml-marquee__track { width: max-content; animation-duration: 115s; will-change: transform; }
+@media (max-width: 767px) { .ml-marquee__track { animation-duration: 140s; } }
+
+/* Painel de modos/telas no tablet em pé: o mesmo respiro do desktop (32px por dentro e entre texto, imagem e exceção) */
+@media (min-width: 768px) and (max-width: 1023px) { .mt__panel { gap: var(--space-8); padding: var(--space-8); } }

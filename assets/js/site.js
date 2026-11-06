@@ -50,30 +50,37 @@
     band.textContent = ' | Feito com vibe coding usando o Claude e ouvindo ' + bands[Math.floor(Math.random() * bands.length)] + '.';
   }
 
-  // Celular (sem hover): o card mais visível ganha .is-active, que repete o hover do desktop
-  // (capa em leque, sublinhado e "Ver case" como botão). Entra em foco com 60% do card, ou metade da tela, à vista;
-  // sai quando o próximo toma o foco ou quando restar menos de 35% dele à vista.
-  var noHover = window.matchMedia && window.matchMedia('(hover: none)').matches;
+  // Toque (celular e tablet, sem mouse): o hover do CSS fica desligado e a página marca com .is-active
+  // o card que ocupa a maior parte da tela (capa em leque, sublinhado e "Ver case" como botão). Um card por vez:
+  // - candidato: card com pelo menos 60% de si à vista (ou da tela, se ele for maior que a tela);
+  // - vence o candidato com mais pixels na tela; empate (dois cards inteiros no tablet): o mais perto do centro da tela;
+  // - o card em foco só cede quando outro passa a ocupar 10% da tela a mais que ele, e sai quando restar menos de 35% dele à vista.
+  // A conta é refeita ao rolar, no fim da rolagem, ao soltar o dedo e ao voltar à página, então nada fica preso depois de segurar e arrastar.
+  var fine = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var cards = Array.prototype.slice.call(document.querySelectorAll('.ml-card'));
-  if (noHover && cards.length) {
+  if (!fine && cards.length) {
     var raf = 0;
     var checkFocus = function () {
       raf = 0;
       var vh = window.innerHeight || document.documentElement.clientHeight;
-      var best = null, bestSeen = 0;
-      cards.forEach(function (card) {
+      var info = cards.map(function (card) {
         var r = card.getBoundingClientRect();
-        var seen = Math.min(r.bottom, vh) - Math.max(r.top, 0);
-        var keep = card.classList.contains('is-active')
-          ? seen >= Math.min(r.height, vh) * 0.35
-          : (seen >= r.height * 0.6 || seen >= vh * 0.5);
-        if (keep && seen > bestSeen) { best = card; bestSeen = seen; }
+        var seen = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+        return { card: card, seen: seen, ratio: r.height ? seen / Math.min(r.height, vh) : 0, dist: Math.abs((r.top + r.bottom) / 2 - vh / 2), on: card.classList.contains('is-active') };
       });
-      cards.forEach(function (card) { card.classList.toggle('is-active', card === best); });
+      var best = null, cur = null;
+      info.forEach(function (c) {
+        if (c.on && c.ratio >= 0.35) cur = c;
+        if (c.ratio < 0.6) return;
+        if (!best || c.seen > best.seen + 1 || (Math.abs(c.seen - best.seen) <= 1 && c.dist < best.dist)) best = c;
+      });
+      if (cur && (!best || best.seen < cur.seen + vh * 0.1)) best = cur;
+      info.forEach(function (c) { c.card.classList.toggle('is-active', !!best && c.card === best.card); });
     };
     var onFocusScroll = function () { if (!raf) raf = requestAnimationFrame(checkFocus); };
-    window.addEventListener('scroll', onFocusScroll, { passive: true });
-    window.addEventListener('resize', onFocusScroll);
+    ['scroll', 'scrollend', 'resize', 'orientationchange', 'touchend', 'touchcancel', 'pointercancel', 'pageshow'].forEach(function (t) {
+      window.addEventListener(t, onFocusScroll, { passive: true });
+    });
     setTimeout(checkFocus, 0);
     setTimeout(checkFocus, 600);
   }
