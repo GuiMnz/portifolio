@@ -46,7 +46,7 @@
   // Easter egg do rodapé: uma banda sorteada a cada carregamento da página
   var band = document.getElementById('footerBand');
   if (band) {
-    var bands = ['Linkin Park', 'Avenged Sevenfold', 'Bring Me the Horizon', 'BRAZA', 'Forfun', 'Gorillaz', 'Alabama Shakes', 'Black Alien', 'Bullet Bane', 'Criolo', 'Foo Fighters', 'O Rappa', 'Yellowcard'];
+    var bands = ['Linkin Park', 'Avenged Sevenfold', 'Bring Me the Horizon', 'BRAZA', 'Forfun', 'Gorillaz', 'Alabama Shakes', 'Black Alien', 'Bullet Bane', 'Criolo', 'Foo Fighters', 'O Rappa', 'Yellowcard', 'Colid', 'Emicida', 'Muse', 'Imagine Dragons', 'Baiana System', 'System of a Down', 'Three Days Grace', 'Sum 41', 'Rage Against the Machine', 'Selah Sue'];
     band.textContent = ' | Feito com vibe coding usando o Claude e ouvindo ' + bands[Math.floor(Math.random() * bands.length)] + '.';
   }
 
